@@ -32,7 +32,7 @@ const loop = setInterval(() => {
 
     // Colocando e editando a img de MárioGameOver quando ele perde o jogo
 
-    mario.src = "./img/game-over.png";
+    mario.scr = "./img/game-over.png";
     mario.style.width = "80px";
     mario.style.marginLeft = "50px";
 
