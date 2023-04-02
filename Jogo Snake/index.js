@@ -3,16 +3,16 @@
 
 // Declarando as variaveis do jogo
 
-let domReplay = document.querySelector('#replay');
-let domscore = document.querySelector('#score');
-let canvasGame = document.createElement('canvas')
+let dom_Replay = document.querySelector('#replay');
+let dom_score = document.querySelector('#score');
+let dom_canvas = document.createElement('canvas')
 
-document.querySelector('#canvas').appendChild(canvasGame);
+document.querySelector('#canvas').appendChild(dom_canvas);
 
-let ctx = canvasGame.getContext('2d');
+let ctx = dom_canvas.getContext('2d');
 
-const W = (canvasGame.width = 400);
-const H = (canvasGame.height = 400);
+const W = (dom_canvas.width = 400);
+const H = (dom_canvas.height = 400);
 
 //criando as propiedades que vamos usar no jogo//
 
@@ -185,7 +185,6 @@ let KEY = {
     }
 };
 
-//construinddo a covra
 
 class Snake {
         constructor(i, type) {
@@ -350,7 +349,7 @@ class Food {
 
  function incrementScore(){
      score++;
-     domScore.innerText = score.toString().padStart(2, "0");
+     dom_score.innerText = score.toString().padStart(2, "0");
  }
 
  function particlesSplash(){
@@ -364,9 +363,44 @@ class Food {
     CTX.clearReact(0,0,W, H);
 
  }
+ function loop () {
+    clear();
+    if (isGameOver) {
+        requestID =setTimeout(loop,1000 / 60);
+        helpers.drawGrid();
+        snake.update();
+        food.draw();
+        for (let p of particles) {
+            p.update();
+        }
+        helpers.garbageCollector();
+    } else {
+        clear();
+        gameOver();
+    }
+ }
  function gameOver (){
     maxScore ? null : (maxScore = score);
     score > maxScore ? (maxScore = score): null;
     window.localStorage.setItem("maxScore", maxScore);
-    CTX.fillStyle = ""
+    CTX.fillStyle = "#4cffd7";
+    CTX.texAlign = "center";
+    CTX.fillText("GAME OVER", W / 2, H / 2);
+    CTX.font = "bold 30px Poppins, sans-serif";
+    CTX.fillText(`SCORE   ${score}`, W / 2, H / 2 + 60);
+    CTX.fillText (`MAXSCORE  ${maxScore}`, W / 2, H / 2 + 80);
  }
+
+ function reset() {
+    dom_score.innerText = "00";
+    score = "00";
+    snake = new Snake();
+    food.spawn();
+    KEY.resetState();
+    isGameOver = false;
+    clearTimeout(requestID);
+    loop();
+ }
+
+ initialize();
+ // Aqui estamos iniciando o jogo
