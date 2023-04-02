@@ -7,8 +7,8 @@
 .gameplay {
   width: 80%;
   height: 520px;
-  border: 2px solid #ccc;
-  margin: 0 auto;
+  border: 5px solid #ccc;
+  margin:  auto;
   position: relative;
   overflow: hidden;
 }
@@ -34,7 +34,9 @@
 .fundo {
   width: 100%;
   height: 100%;
-}
+  }
+
+  
 
 @keyframes eggman_animation {
   0% {

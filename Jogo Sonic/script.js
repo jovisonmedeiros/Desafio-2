@@ -1,6 +1,9 @@
 const sonic = document.querySelector(".sonic");
 const eggman = document.querySelector(".eggman");
 const fundo = document.querySelector(".fundo");
+const score = document.querySelector(".score");
+
+
 
 const jump = () => {
   sonic.classList.add("jump");
@@ -24,10 +27,13 @@ const loop = setInterval(() => {
 
     sonic.style.animation = "none";
     sonic.src = "./Arquivos/Sonic-Loss.gif";
-    sonic.style.width = "240px";
+    sonic.style.width = "250px";
 
     fundo.src = "./Arquivos/GameoverSMB-1.png";
+    
   }
 }, 10);
+
+
 
 document.addEventListener("click", jump);
