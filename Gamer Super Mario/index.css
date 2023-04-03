@@ -44,12 +44,7 @@
     animation: clouds-animation 10s infinite linear;
 
 }
-.moeda {
-    position: absolute;
-    width: 50px;
-    animation: cogumelo-animation 15s infinite linear;
-    bottom: 50%;
-}
+
 button{
     position: relative;
     align-items:normal;
